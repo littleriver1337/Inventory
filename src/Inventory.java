@@ -12,7 +12,7 @@ public class Inventory {
     while (true) {
 
         for (InventoryItem element: inventory){
-            System.out.println(element.count + " " + element.name);
+            System.out.println(String.format("%d, %s", element.count, element.name, element.category));//element.count + " " + element.name);
         }
 
         System.out.println("Welcome to your inventory!");
@@ -28,7 +28,7 @@ public class Inventory {
         if (optionNum == 1) {
             System.out.println("What item would you like to add to your inventory?");
             String newItem = scanner.nextLine();
-            InventoryItem item = new InventoryItem(newItem);
+            InventoryItem item = new InventoryItem(newItem, count);
             inventory.add(item);
         } else if (optionNum == 2) {
                 System.out.println("What item would you like to remove from your inventory?");
@@ -50,6 +50,25 @@ public class Inventory {
             item.count = newAmount;
         }
 
-        }
     }
+}
+
+static InventoryItem createItem(String name, int count, String category){
+    if (category.equals("Pants")){
+        return new Pants(name, count, category);
+    }
+    else if (category.equals("Shirt")){
+        return new Shirt(name, count, category);
+    }
+    else if (category.equals("Shoe")){
+        return new Shoe(name, count, category);
+    }
+    else if (category.equals("Socks")){
+        return new Socks(name, count, category);
+    }
+    else if (category.equals("Tie")){
+        return new Tie(name, count, category);
+    }
+    return null;
+}
 }
